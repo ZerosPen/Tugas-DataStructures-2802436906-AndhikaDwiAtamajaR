@@ -170,6 +170,16 @@ int main(){
 	printf("Mengeluarkan nilai di tengah\n");
 	popMid(7);
 	print();
+	printf("\n");
+	printf("Linked list\n");
+	pushTail(21);
+	pushTail(6);
+	pushTail(101);
+	print();
+	printf("\n");
+	printf("Mengeluarkan belakang\n");
+	popTail();
+	print();
 	
 	return 0;
 }
