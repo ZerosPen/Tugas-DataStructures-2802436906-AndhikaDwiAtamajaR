@@ -82,6 +82,7 @@ void InfixToPost(const char* infix) {
 int main() {
     char infix[100];
     
+    puts("Exampel : 4+6*(5-2)/3");
     printf("Enter infix expression: ");
     scanf("%s", infix);
     
