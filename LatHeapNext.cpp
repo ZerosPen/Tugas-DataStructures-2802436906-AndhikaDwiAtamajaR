@@ -122,6 +122,12 @@ void deleteHeapByValue(Heaps* heap, int value){
 		}
 	}
 	
+	    // Validasi jika value tidak ditemukan
+    if(index == -1){
+        printf("Value not found in heap.\n");
+        return;
+    }
+	
 	//Tukar elemen yang ingin dihapus dengan elemen terakhir
 	heap->arr[index] = heap->arr[heap->size - 1];
     heap->size--;
