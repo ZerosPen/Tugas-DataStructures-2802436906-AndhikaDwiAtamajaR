@@ -58,14 +58,16 @@ void increaseKey(Heaps *heap, int index, int value){
 }
 
 void insertHeap(Heaps* heap, int value){
+	//check heap capacity
     if (heap->size == heap->capacity){
         printf("Heap Overflow!\n");
         return;
     }
 
-    int i = heap->size++;
-    heap->arr[i] = value;
-
+    int i = heap->size++; // i = index baru
+    heap->arr[i] = value; // arr[i] = value
+	
+	//Swap ke atas
     while (i != 0 && heap->arr[(i - 1) / 2] < heap->arr[i]){
         swapNum(&heap->arr[i], &heap->arr[(i - 1) / 2]);
         i = (i - 1) / 2;
@@ -92,11 +94,21 @@ void deleteHeapByIndex(Heaps* heap, int index){
         printf("Invalid index\n");
         return;
     }
-    
-	//Tukar elemen yang ingin dihapus dengan elemen terakhir
+
     heap->arr[index] = heap->arr[heap->size - 1];
     heap->size--;
-    heapify(heap, index);
+
+    // Perbaiki heap ke atas atau ke bawah tergantung nilai elemen baru
+    if (index > 0 && heap->arr[index] > heap->arr[(index - 1) / 2]){
+        // Perlu perbaikan ke atas
+        while (index > 0 && heap->arr[index] > heap->arr[(index - 1) / 2]){
+            swapNum(&heap->arr[index], &heap->arr[(index - 1) / 2]);
+            index = (index - 1) / 2;
+        }
+    } else {
+        // Perbaikan ke bawah
+        heapify(heap, index);
+    }
 }
 
 void deleteHeapByValue(Heaps* heap, int value){
